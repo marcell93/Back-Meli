@@ -6,6 +6,7 @@ import * as logger from 'morgan';
 import * as lusca from 'lusca';
 import * as dotenv from 'dotenv';
 import * as expressValidator from 'express-validator';
+import * as cors from 'cors';
 import { ProductRouter } from './routes';
 
 // Load environment variables from .env file, where API keys and passwords are configured
@@ -28,6 +29,8 @@ app.use(session({
 }));
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
+
+app.use(cors());
 
 app.use('/api/items', ProductRouter);
 
